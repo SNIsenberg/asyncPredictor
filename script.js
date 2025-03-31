@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((response) => {return response.json();})
             .then( (data) => {
                 genderSpot.innerHTML = data.gender;
+                if (data.gender == undefined) {
+                    genderSpot.innerHTML = "We can't get this for you now."
+                }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -24,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((response) => {return response.json();})
             .then( (data) => {
                 ageSpot.innerHTML = data.age;
+                if (data.age === undefined) {
+                    ageSpot.innerHTML = "We can't get this for you now."
+                }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -32,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`https://api.nationalize.io?name=${name.toLowerCase()}`)
             .then((response) => {return response.json();})
             .then( (data) => {
+                //this returns an object which contains an array of 5 countries
+                //will only show the first country
                 let country = data.country[0].country_id
                 nationalitySpot.innerHTML = processCountryCode(country);
             })
