@@ -15,28 +15,29 @@
 
     <main>
         <article class="description">
-            <h2>{add explanation}</h2>
-            <p>{add more explanation}</p>
+            <h2>What We Do</h2>
+            <p>When you input a first name and press the button, we will guess more about you based on that name. 
+                See if we can accurately predict your gender, age, and nationality!</p>
             <ul>
-                <li><strong>Gender:</strong> {add}</li>
-                <li><strong>Age:</strong> {add}</li>
-                <li><strong>Nationality:</strong> {add}</li>
+                <li><strong>Gender:</strong> With a 50/50 chance, let's hope we get this one right!</li>
+                <li><strong>Age:</strong> Expect a higher margin of error here, what with more possibilities and all.</li>
+                <li><strong>Nationality:</strong> This one's hard to predict accurately, but we'll still try!</li>
             </ul>
         </article>
 
         <article class="input-section">
             <div id="nameField">
                 <label for="nameInput">First Name</label>
-                <input type="text" id="nameInput" name="firstName" placeholder="Your First Name Here" required/>
+                <input type="text" id="nameInput" name="firstName" placeholder="Input First Name Here" required/>
             </div>
             <button id="predictBtn" type="button">Predict Now</button>
         </article>
 
         <article class="result">
             <h2>Prediction Results</h2>
-            <p id="genderResult"><strong>Gender:</strong> --</p>
-            <p id="ageResult"><strong>Age:</strong> --</p>
-            <p id="nationalityResult"><strong>Nationality:</strong> --</p>
+            <p id="genderResult"><strong>Gender:</strong> <span id="gender">--</span></p>
+            <p id="ageResult"><strong>Age:</strong> <span id="age">--</span></p>
+            <p id="nationalityResult"><strong>Nationality:</strong> <span id="nationality">--</span></p>
         </article>
     </main>
 
