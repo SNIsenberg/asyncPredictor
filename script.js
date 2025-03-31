@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let genderSpot = document.getElementById('gender');
-    let ageSpot = document.getElementById('age');
-    let nationalitySpot = document.getElementById('nationality');
+    const genderSpot = document.getElementById('gender');
+    const ageSpot = document.getElementById('age');
+    const nationalitySpot = document.getElementById('nationality');
 
     document.getElementById('predictBtn').addEventListener('click', () => {
         //clear the results
@@ -11,11 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //get new results
         let name = document.getElementById('nameInput').value
+        if (name === "") {
+            alert("Please enter a name");
+        }
+        else{
+        //get gender
         fetch(`https://api.genderize.io?name=${name.toLowerCase()}`)
             .then((response) => {return response.json();})
             .then( (data) => {
                 genderSpot.innerHTML = data.gender;
-                if (data.gender == undefined) {
+                if (data.gender === undefined) {
                     genderSpot.innerHTML = "We can't get this for you now."
                 }
             })
@@ -23,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching data:', error);
                 document.getElementById('gender').innerHTML = "We can't get this for you now."
             });
+        //get age
         fetch(`https://api.agify.io?name=${name.toLowerCase()}`)
             .then((response) => {return response.json();})
             .then( (data) => {
@@ -35,11 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching data:', error);
                 document.getElementById('age').innerHTML = "We can't get this for you now."
             });
+
         fetch(`https://api.nationalize.io?name=${name.toLowerCase()}`)
             .then((response) => {return response.json();})
             .then( (data) => {
-                //this returns an object which contains an array of 5 countries
-                //will only show the first country
+                /* returns an object which contains an array of 5 countries,
+                only want to show the first country */
                 let country = data.country[0].country_id
                 nationalitySpot.innerHTML = processCountryCode(country);
             })
@@ -47,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching data:', error);
                 nationalitySpot.innerHTML = "We can't get this for you now."
             });
+        }
     })
 })
 
